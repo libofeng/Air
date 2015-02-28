@@ -1,12 +1,138 @@
+## Version 1: We should ignore everything that is generated, backups, IDE specifics (once we know more we can enable them)
+
+## generic files to ignore, we ignore backup files (*~) and vim swap file (.swp), MacOS dir file (.DS_Store) and any file with .out extension (a.out ..etc) 
+*~
+*.lock
+*.DS_Store
+*.swp
+*.out
+*.tmp
+
+# OS generated files #
+###########################################
+.DS_Store?
+ehthumbs.db
+Icon?
+Thumbs.db
+
+# Other version control #
+###########################################
+.svn
+
+
+
+# Packages #
+# it's better to unpack these files and commit the raw source
+# git has its own built in compression methods
+###########################################
+*.tar
+*.zip
+*.tgz
+
+# Java #
+# java specific
+###########################################
 *.class
-
-# Mobile Tools for Java (J2ME)
-.mtj.tmp/
-
-# Package Files #
+*.jad
 *.jar
-*.war
-*.ear
 
-# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
-hs_err_pid*
+# LWUIT #
+# Binary resouce is generated
+###########################################
+*.res
+
+# Build #
+# Build artifacts
+###########################################
+# everything should be in /output/
+output
+
+
+# Logs #
+###########################################
+*.log
+
+# Intellij #
+# IDE project sould not be commit
+###########################################
+*.iml
+*.ipr
+*.iws
+.idea
+target
+
+# netbeans #
+# IDE project sould not be commit
+###########################################
+#netbeans projects ignored
+nbproject
+#netbeans ignore personal stuff 
+#nbproject/private/
+
+# Eclipse
+######################
+.mtj
+.classpath
+.project
+.metadata
+.mtj.tmp
+.settings
+.workspace
+.eclipseme
+/build.properties
+/Application Descriptor
+
+# Temporary folders
+######################
+/target/tmp*/
+
+# Application files
+######################
+*.exe
+
+# Backup files
+######################
+*.bak
+
+# Image files
+######################
+#*.png
+
+# localization files
+######################
+social/localization/*.csv
+email40/localization/*.csv
+
+# Old build system
+######################
+build_system/
+docs/
+howto/
+unit_tests/
+common/build_system/
+common/docs
+common/howto
+common/localization
+common/res
+common/unit_tests
+
+
+# Clearcase files
+######################
+*.contrib
+*.mkelem
+*.keep
+
+# WTK folder
+######################
+build/lib/wtk/
+common/build/lib/wtk/
+
+# Coverity files
+######################
+build/lib/coverity/Prevent/
+build/lib/coverity/dont_call.xml
+common/build/lib/coverity/Prevent/
+common/build/lib/coverity/dont_call.xml
+
+/*/target
