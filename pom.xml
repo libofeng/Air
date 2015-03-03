@@ -45,7 +45,7 @@
         <hibernate.version>4.3.8.Final</hibernate.version>
 
         <!--db-->
-        <proxool.version>0.9.1</proxool.version>
+        <druid.version>1.0.12</druid.version>
         <mysql.version>5.1.34</mysql.version>
         <ehcache.version>2.6.10</ehcache.version>
 
@@ -84,7 +84,7 @@
         <!--web-->
         <jstl.version>1.2</jstl.version>
         <taglibs.version>1.1.2</taglibs.version>
-        <servlet.api.version>3.1.0</servlet.api.version>
+        <servlet.api.version>2.5</servlet.api.version>
         <jsp.api.version>2.2</jsp.api.version>
 
         <!--atmosphere-->
@@ -290,14 +290,9 @@
 
             <!--conntion pool-->
             <dependency>
-                <groupId>com.cloudhopper.proxool</groupId>
-                <artifactId>proxool</artifactId>
-                <version>${proxool.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.cloudhopper.proxool</groupId>
-                <artifactId>proxool-cglib</artifactId>
-                <version>${proxool.version}</version>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid</artifactId>
+                <version>${druid.version}</version>
             </dependency>
 
             <!-- Logging -->
