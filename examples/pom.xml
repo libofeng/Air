@@ -11,6 +11,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>air-boot</module>
+        <module>air-batch</module>
     </modules>
 
     <artifactId>examples</artifactId>
