@@ -15,12 +15,15 @@ public class PaginationTag extends TagSupport {
     private static final String QUESTION_MARK = "?";
     private static final String AND_MARK = "&";
     private static final String SLASH_MARK = "/";
+    private static final String DEFAULT_DISABLED_LINK = "javascript:void(0);";
+    private static final String HTML_DATA_ATTR = "data-page-no";
 
     private String url;
     private String paramName;
     private int pageNo;
     private int totalPages;
     private int numberButtons = 10;
+    private boolean disableLink = false;
 
     // button/link text
     private String first = "|&lt;";
@@ -78,6 +81,15 @@ public class PaginationTag extends TagSupport {
     }
 
     /**
+     * build html attribute for javascript visting.
+     * @param no page No.
+     * @return html attribute
+     */
+    private String buildHtmlAttr(int no) {
+        return disableLink ? HTML_DATA_ATTR + EQUALS_MARK + "\"" + no + "\"" : "";
+    }
+
+    /**
      * build Url for buttons
      *
      * @param no page NO.
@@ -86,7 +98,15 @@ public class PaginationTag extends TagSupport {
     private String buildUrl(int no) {
         logger.debug("buildUrl  ... ");
         String fullUrl;
-        if (paramName == null || paramName.length() == 0) {
+        if (disableLink) {
+            logger.debug("hyperLink disabled.");
+
+            if (url == null || url.length() == 0) {
+                fullUrl = DEFAULT_DISABLED_LINK;
+            } else {
+                fullUrl = url;
+            }
+        } else if (paramName == null || paramName.length() == 0) {
             logger.debug("no paramName, build restful url.");
             // /aa/bb/cc/{pageNo}
             if (url.endsWith(SLASH_MARK)) {
@@ -118,7 +138,8 @@ public class PaginationTag extends TagSupport {
             return "<span class=\"button no current\">" + no + "</span>";
         } else {
             logger.debug("show page button of pageNo::{}", no);
-            return "<a class=\"button no\" href=\"" + buildUrl(no) + "\">" + no + "</a>";
+            return "<a class=\"button no\" " + buildHtmlAttr(no)
+                    + " href=\"" + buildUrl(no) + "\">" + no + "</a>";
         }
     }
 
@@ -189,7 +210,8 @@ public class PaginationTag extends TagSupport {
             return "<span class=\"button first disabled\">" + first + "</span>";
         } else {
             logger.debug("show first button. first:{}", first);
-            return "<a class=\"button first\" href=\"" + buildUrl(1) + "\">" + first + "</a>";
+            return "<a class=\"button first\" " + buildHtmlAttr(1)
+                    + " href=\"" + buildUrl(1) + "\">" + first + "</a>";
         }
     }
 
@@ -210,7 +232,8 @@ public class PaginationTag extends TagSupport {
             return "<span class=\"button last disabled\">" + last + "</span>";
         } else {
             logger.debug("show last button. last:{}", last);
-            return "<a class=\"button last\" href=\"" + buildUrl(totalPages) + "\">" + last + "</a>";
+            return "<a class=\"button last\" " + buildHtmlAttr(totalPages)
+                    + " href=\"" + buildUrl(totalPages) + "\">" + last + "</a>";
         }
     }
 
@@ -232,7 +255,8 @@ public class PaginationTag extends TagSupport {
             return "<span class=\"button prev disabled\">" + prev + "</span>";
         } else {
             logger.debug("show previous button. prev:{}", prev);
-            return "<a class=\"button prev\" href=\"" + buildUrl(no) + "\">" + prev + "</a>";
+            return "<a class=\"button prev\" " + buildHtmlAttr(no)
+                    + " href=\"" + buildUrl(no) + "\">" + prev + "</a>";
         }
     }
 
@@ -254,7 +278,8 @@ public class PaginationTag extends TagSupport {
             return "<span class=\"button next disabled\">" + next + "</span>";
         } else {
             logger.debug("show next button. next:{}", next);
-            return "<a class=\"button next\" href=\"" + buildUrl(no) + "\">" + next + "</a>";
+            return "<a class=\"button next\" " + buildHtmlAttr(no)
+                    + " href=\"" + buildUrl(no) + "\">" + next + "</a>";
         }
     }
 
