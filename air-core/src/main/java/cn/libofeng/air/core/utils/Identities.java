@@ -37,13 +37,4 @@ public class Identities {
     public static long randomLong() {
         return Math.abs(random.nextLong());
     }
-
-    /**
-     * 基于Base62编码的SecureRandom随机生成bytes.
-     */
-    public static String randomBase62(int length) {
-        byte[] randomBytes = new byte[length];
-        random.nextBytes(randomBytes);
-        return Encodes.encodeBase62(randomBytes);
-    }
 }
