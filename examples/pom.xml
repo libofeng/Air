@@ -13,6 +13,7 @@
         <module>air-boot</module>
         <module>air-boot-jsp</module>
         <module>air-batch</module>
+        <module>spring-data-redis</module>
     </modules>
 
     <artifactId>examples</artifactId>
